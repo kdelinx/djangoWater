@@ -34,4 +34,7 @@ class UserCreateForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['name']
+        fields = ['email', 'first_name', 'second_name', 'third_name', 'avatar',
+                  'address_home', 'address_work', 'worktime', 'traceroute',
+                  'favorite_place', 'photo_1', 'photo_2', 'telephone',
+                  'student_info', 'gentleman', 'birthday']

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+Инфа
+{% endblock %}
+{% block base_body %}
+
+    {{ profile.get_full_name }} <br> <hr>
+    {% for result in result_list %}
+        Title: {{ result.title }}<br/>
+        Body: {{ result.body }}<br>
+        Date: {{ result.date_updated }}<br><br><br>
+    {% endfor %}
+
+
+{% endblock %}

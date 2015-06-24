@@ -1,13 +1,12 @@
 # coding: utf-8
 from django.contrib.auth.models import BaseUserManager
-from django.utils.translation import ugettext_lazy as _
 
 
 class UserManager(BaseUserManager):
 
     def create_user(self, email, login, password=None):
         if not email:
-            raise ValueError(_('User must have an email address'))
+            raise ValueError('User must have an email address')
 
         user = self.model(
             email=self.normalize_email(email),

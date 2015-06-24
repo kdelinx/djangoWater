@@ -12,12 +12,12 @@ from users.managers import UserManager
 
 def get_water_avatar(instance, filename):
     ext = filename.split('.')[-1]
-    filename = '%s%s' % (uuid.uuid4(), ext)
+    filename = '%s.%s' % (uuid.uuid4(), ext)
     return 'avatar/%s%s%s' % (filename[:1], filename[2:3], filename)
 
 def get_water_photo(instance, filename):
     ext = filename.split('.')[-1]
-    filename = '%s%s' % (uuid.uuid4(), ext)
+    filename = '%s.%s' % (uuid.uuid4(), ext)
     return 'photo/%s%s%s' % (filename[:1], filename[2:3], filename)
 
 class Gender(models.Model):
@@ -36,30 +36,30 @@ class Gender(models.Model):
 
 class User(AbstractClass, AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
-        'E-Mail',
+        u'E-Mail',
         max_length=255,
-        unique=True
     )
     login = models.CharField(
-        'Логин',
+        u'Логин',
         max_length=255,
         unique=True
     )
     gender = models.ForeignKey(
         Gender,
-        verbose_name='Пол',
-        related_name='gender_user'
+        verbose_name=u'Пол',
+        null=True,
+        blank=True
     )
     first_name = models.CharField(
-        'Фамилия',
+        u'Фамилия',
         max_length=255
     )
     second_name = models.CharField(
-        'Имя',
+        u'Имя',
         max_length=255
     )
     third_name = models.CharField(
-        'Отчество',
+        u'Отчество',
         max_length=255
     )
     avatar = ProcessedImageField(
@@ -71,20 +71,20 @@ class User(AbstractClass, AbstractBaseUser, PermissionsMixin):
         null=True
     )
     address_home = models.TextField(
-        'Домашний адрес',
+        u'Домашний адрес',
     )
     address_work = models.TextField(
-        'Рабочий адрес',
+        u'Рабочий адрес',
     )
     worktime = models.CharField(
-        'График работы',
+        u'График работы',
         max_length=255
     )
     traceroute = models.TextField(
-        'Приблезительный маршрут'
+        u'Приблезительный маршрут'
     )
     favorite_place = models.TextField(
-        'Места постоянного посещения'
+        u'Места постоянного посещения'
     )
     photo_1 = ProcessedImageField(
         upload_to=get_water_photo,
@@ -101,18 +101,18 @@ class User(AbstractClass, AbstractBaseUser, PermissionsMixin):
         verbose_name='Дополнительная фотография пользователя'
     )
     telephone = models.CharField(
-        'Телефон',
+        u'Телефон',
         max_length=16
     )
     student_info = models.TextField(
-        'Информация об учебе'
+        u'Информация об учебе'
     )
     gentleman = models.BooleanField(
-        'Джентельменское соглашение',
+        u'Джентельменское соглашение',
         default=True
     )
     birthday = models.DateField(
-        'Дата рождения',
+        u'Дата рождения',
         blank=True,
         null=True
     )
@@ -133,13 +133,13 @@ class User(AbstractClass, AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = u'пользователи'
 
     def __unicode__(self):
-        return self.email
+        return '%s %s %s' % (self.first_name, self.second_name, self.third_name)
 
     def get_full_name(self):
         return '%s %s %s' % (self.first_name, self.second_name, self.third_name)
 
     def get_short_name(self):
-        return '%s. %s' % (self.first_name, self.second_name[0])
+        return '%s %s.' % (self.second_name, self.first_name[0])
 
     def has_perm(self, perm, obj=None):
         return True

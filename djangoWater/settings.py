@@ -7,7 +7,7 @@ PROJECT_DESC = 'Nullam viverra odio dui ornare suspendisse' \
                ' faucibus fringilla aliquam himenaeos elit enim'
 PROJECT_TIME = '7:30 - 17:30'
 PROJECT_PHONE = '+7-906-198-3198'
-PROJECT_PLACE = 'Water Wars., Россия, Томск'
+PROJECT_PLACE = 'Water Wars.'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$&y%-rjmg7@5be7jhv&4qpkg*&s4@0hlz96&*4^+yqaxbky)og'
@@ -16,6 +16,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'users.User'
 INSTALLED_APPS = (
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,7 +60,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-LANGUAGE_CODE = 'en-US'
+LANGUAGE_CODE = 'ru-RU'
 TIME_ZONE = 'Asia/Novosibirsk'
 USE_I18N = True
 USE_L10N = True

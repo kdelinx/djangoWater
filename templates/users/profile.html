@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block base_body %}
+{{ profile.get_full_name }}<hr>
+    {{ profile.get_gender }}<hr>
+    {{ profile.date_updated }}<hr>
+    {{ profile.email }}<hr>
+    {{ profile.get_age }}<hr>
+    <img src="{{ profile.photo_1.url }}">
+{% endblock %}
