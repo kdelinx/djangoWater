@@ -13,7 +13,6 @@ class AbstractClass(models.Model):
     class Meta:
         abstract = True
 
-
 class Event(AbstractClass):
     title = models.CharField(
         'Название',
@@ -23,19 +22,13 @@ class Event(AbstractClass):
         'Текст эвента'
     )
 
-    def __unicode__(self):
-        return self.title
-
     class Meta:
         verbose_name = u'Эвенты'
         verbose_name_plural = u'эвенты'
 
+    def __unicode__(self):
+        return self.title
 
-class Static(AbstractClass):
-    pass
-    # user = models.ForeignKey(User)
-    # killed = models.ManyToManyField(User)
-    # counter = models.SmallIntegerField()
 
 
 class Page(AbstractClass):
@@ -54,6 +47,23 @@ class Page(AbstractClass):
     class Meta:
         verbose_name = u'Страницы'
         verbose_name_plural = u'страницы'
+
+    def __unicode__(self):
+        return self.title
+
+
+class News(AbstractClass):
+    title = models.CharField(
+        'Заголовок',
+        max_length=255
+    )
+    body = models.TextField(
+        'Новость'
+    )
+
+    class Meta:
+        verbose_name = u'Новости'
+        verbose_name_plural = u'новости'
 
     def __unicode__(self):
         return self.title

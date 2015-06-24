@@ -59,7 +59,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'en-US'
 TIME_ZONE = 'Asia/Novosibirsk'
 USE_I18N = True
 USE_L10N = True

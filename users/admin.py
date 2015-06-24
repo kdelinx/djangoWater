@@ -1,3 +1,3 @@
 from django.contrib import admin
+from users.models import Static, User
 
-# Register your models here.

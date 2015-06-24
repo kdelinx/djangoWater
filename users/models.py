@@ -1,10 +1,10 @@
 # coding: utf-8
 import uuid, math
-from datetime import date, datetime, timedelta
+from datetime import date
 from django.db import models
 from django.conf import settings
-from core.models import AbstractClass
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from core.models import AbstractClass
 from imagekit.models import ProcessedImageField
 from pilkit.processors import ResizeToFill
 from users.managers import UserManager
@@ -20,17 +20,21 @@ def get_water_photo(instance, filename):
     filename = '%s%s' % (uuid.uuid4(), ext)
     return 'photo/%s%s%s' % (filename[:1], filename[2:3], filename)
 
-class Gender(AbstractClass):
+class Gender(models.Model):
     gender = models.CharField(
         max_length=7,
         blank=True,
         null=True
     )
 
+    class Meta:
+        verbose_name = u'Пол'
+        verbose_name_plural = u'пол'
+
     def __unicode__(self):
         return self.gender
 
-class User(AbstractBaseUser, PermissionsMixin, AbstractClass):
+class User(AbstractClass, AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         'E-Mail',
         max_length=255,
@@ -41,11 +45,11 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractClass):
         max_length=255,
         unique=True
     )
-    # gender = models.ForeignKey(
-    #     Gender,
-    #     verbose_name='Пол',
-    #     related_name='gender_user'
-    # )
+    gender = models.ForeignKey(
+        Gender,
+        verbose_name='Пол',
+        related_name='gender_user'
+    )
     first_name = models.CharField(
         'Фамилия',
         max_length=255
@@ -129,7 +133,7 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractClass):
         verbose_name_plural = u'пользователи'
 
     def __unicode__(self):
-        return self.login
+        return self.email
 
     def get_full_name(self):
         return '%s %s %s' % (self.first_name, self.second_name, self.third_name)
@@ -160,12 +164,36 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractClass):
         answer = int(math.floor(deltayears))
         return answer
 
-    # def get_gender(self):
-    #     if self.gender.id == 1:
-    #         return u'Мужчина'
-    #     else:
-    #         return u'Женщина'
+    def get_gender(self):
+        if self.gender.id == 1:
+            return u'Мужчина'
+        else:
+            return u'Женщина'
 
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class Static(AbstractClass):
+    user = models.ForeignKey(
+        User,
+        related_name='user_static',
+        verbose_name=u'Игрок'
+    )
+    killed = models.ManyToManyField(
+        User,
+        related_name='enemy_static',
+        verbose_name=u'Убитые участники игроком'
+    )
+    number_lobby = models.SmallIntegerField(
+        'Номер лобби',
+        default=0
+    )
+
+    class Meta:
+        verbose_name = u'Статистика игр'
+        verbose_name_plural = u'статистика игр'
+
+    def __unicode__(self):
+        return '%s - %s' % (self.number_lobby, self.user.login)
