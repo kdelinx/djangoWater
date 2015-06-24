@@ -4,12 +4,24 @@
 {% endblock %}
 {% block base_body %}
 
-    {{ profile.get_full_name }} <br> <hr>
+    Hey, <a href="{% url 'users:profile' %}">{{ profile.get_full_name }}</a><br> <hr>
     {% for result in result_list %}
         Title: {{ result.title }}<br/>
         Body: {{ result.body }}<br>
         Date: {{ result.date_updated }}<br><br><br>
     {% endfor %}
+
+<hr>
+    <h1>Футер</h1>
+    Бренд: {{ project_name }}<br>
+    Описание: {{ project_desc }}<br>
+    Время работы: {{ project_time }}<br>
+    Телефон: {{ project_phone }}<br>
+    Место обитания: {{ project_place }}<br>
+    {% for foo in article %}
+        <a href="{% url 'core:page' foo.page %}">{{ foo.title }}</a>
+    {% endfor %}<br>
+    {{ project_name }} (C) {% now "Y" %}
 
 
 {% endblock %}

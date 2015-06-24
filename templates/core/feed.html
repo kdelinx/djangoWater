@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}СтенкО{% endblock %}
+{% block base_body %}
+{% for result in result_list %}
+    Название: <b>{{ result.title }}</b><br>
+    Текст: {{ result.body }}<br>
+    Дата обновления: <i>{{ result.date_updated }}</i><br><br>
+{% endfor %}<hr>
+<a href="{% url 'index' %}">Главная</a>
+
+{% endblock %}

@@ -7,7 +7,7 @@ PROJECT_DESC = 'Nullam viverra odio dui ornare suspendisse' \
                ' faucibus fringilla aliquam himenaeos elit enim'
 PROJECT_TIME = '7:30 - 17:30'
 PROJECT_PHONE = '+7-906-198-3198'
-PROJECT_PLACE = 'Water Wars.'
+PROJECT_PLACE = 'Water Wars., Россия. Томск'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$&y%-rjmg7@5be7jhv&4qpkg*&s4@0hlz96&*4^+yqaxbky)og'

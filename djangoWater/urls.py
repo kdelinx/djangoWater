@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^error404/$', 'core.views.error404', name='core_404'),
     url(r'^$', 'core.views.index', name='index'),
+    url(r'^core/', include('core.urls', namespace='core')),
     url(r'^user/', include('users.urls', namespace='users')),
     url(r'^login/$', login, {'template_name': 'users/login.html'}, name='login'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
