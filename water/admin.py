@@ -8,7 +8,7 @@ class VideoInline(admin.TabularInline):
 
 
 class RVideoAdmin(admin.ModelAdmin):
-    # inlines = [VideoInline]
+    inlines = [VideoInline]
     save_on_top = True
 
 
