@@ -15,10 +15,12 @@ def get_water_avatar(instance, filename):
     filename = '%s.%s' % (uuid.uuid4(), ext)
     return 'avatar/%s%s%s' % (filename[:1], filename[2:3], filename)
 
+
 def get_water_photo(instance, filename):
     ext = filename.split('.')[-1]
     filename = '%s.%s' % (uuid.uuid4(), ext)
     return 'photo/%s%s%s' % (filename[:1], filename[2:3], filename)
+
 
 class Gender(models.Model):
     gender = models.CharField(
@@ -33,6 +35,7 @@ class Gender(models.Model):
 
     def __unicode__(self):
         return self.gender
+
 
 class User(AbstractClass, AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(

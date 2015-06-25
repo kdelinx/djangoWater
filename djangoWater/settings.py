@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'core',
     'users',
+    'water',
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -56,8 +57,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'djangoWater.wsgi.application'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'water_battle',
+        'USER': 'postgres',
+        'PASSWORD': '405b9c',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 LANGUAGE_CODE = 'ru-RU'

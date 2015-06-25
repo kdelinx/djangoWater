@@ -13,23 +13,6 @@ class AbstractClass(models.Model):
     class Meta:
         abstract = True
 
-class Event(AbstractClass):
-    title = models.CharField(
-        'Название',
-        max_length=255,
-    )
-    body = models.TextField(
-        'Текст эвента'
-    )
-
-    class Meta:
-        verbose_name = u'Эвенты'
-        verbose_name_plural = u'эвенты'
-
-    def __unicode__(self):
-        return self.title
-
-
 
 class Page(AbstractClass):
     page = models.CharField(
@@ -52,18 +35,4 @@ class Page(AbstractClass):
         return self.title
 
 
-class News(AbstractClass):
-    title = models.CharField(
-        'Заголовок',
-        max_length=255
-    )
-    body = models.TextField(
-        'Новость'
-    )
 
-    class Meta:
-        verbose_name = u'Новости'
-        verbose_name_plural = u'новости'
-
-    def __unicode__(self):
-        return self.title

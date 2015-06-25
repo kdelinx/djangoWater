@@ -6,12 +6,14 @@ from users.models import User
 from users.forms import UserEditForm, UserCreateForm
 from django.contrib.auth import authenticate, login
 
+
 def profile(request):
     user = get_object_or_404(User)
     context = {
         'profile': user,
     }
     return render(request, 'users/profile.html', context)
+
 
 def edit(request):
     user = get_object_or_404(User, id=request.user.id)
@@ -24,6 +26,7 @@ def edit(request):
         'form': form,
     }
     return render(request, 'users/edit.html', context)
+
 
 def register(request, autologin=True):
     form = UserCreateForm(request.POST or None)
