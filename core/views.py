@@ -18,6 +18,8 @@ def index(request):
     context = {
         'profile': User.objects.get(id=request.user.id),
         'result_list': result_list,
+        'noob': User.objects.order_by('-score_die')[:3],
+        'guru': User.objects.order_by('-score_kill')[:3],
     }
     return render(request, 'core/index.html', context)
 

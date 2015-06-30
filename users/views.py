@@ -1,9 +1,10 @@
 # coding: utf-8
-from django.shortcuts import (render, get_object_or_404,
-                              HttpResponseRedirect, Http404)
-from django.core.urlresolvers import reverse
 from users.models import User
 from users.forms import UserEditForm, UserCreateForm
+
+from django.shortcuts import (render, get_object_or_404,
+                              HttpResponseRedirect, Http404,)
+from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login
 
 

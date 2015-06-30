@@ -1,13 +1,16 @@
 # coding: utf-8
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
-from django.core.urlresolvers import reverse
 from users.models import User
 from water.models import Event, News, Gallery, Videos
 from core.models import Page
-from itertools import chain
+
 from water.forms import VideosForm
+
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required, user_passes_test
+
+from itertools import chain
 
 
 def feed(request):

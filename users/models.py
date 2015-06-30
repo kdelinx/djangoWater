@@ -119,6 +119,18 @@ class User(AbstractClass, AbstractBaseUser, PermissionsMixin):
         blank=True,
         null=True
     )
+    score_kill = models.IntegerField(
+        u'Количество убийств',
+        default=0,
+        blank=True,
+        null=True
+    )
+    score_die = models.IntegerField(
+        u'Количество смертей',
+        default=0,
+        blank=True,
+        null=True
+    )
     is_active = models.BooleanField(
         default=True
     )
