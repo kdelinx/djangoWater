@@ -1,6 +1,7 @@
 from django.conf import settings
 from core.models import Page
 
+
 def site_meta(request):
     article = Page.objects.all()
     context = {

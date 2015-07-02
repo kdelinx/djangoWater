@@ -36,11 +36,15 @@ class Videos(AbstractClass):
         max_length=100
     )
     video_id = models.CharField(
-        max_length=20
+        max_length=20,
+        blank=True,
+        default=''
     )
     title = models.CharField(
         'Заголовок',
-        max_length=255
+        max_length=255,
+        blank=True,
+        default=''
     )
     description = models.TextField(
         blank=True,
@@ -50,7 +54,6 @@ class Videos(AbstractClass):
         News,
         related_name='news_video',
         blank=True,
-        null=True
     )
     likes = models.ManyToManyField(
         User,
@@ -92,11 +95,13 @@ class Videos(AbstractClass):
         return False
 
     def get_meta(self, video_id):
-        url = 'http://gdata.youtube.com/feeds/api/videos/%s?alt=json&v=2' % video_id
+        api_token = 'AIzaSyDW1EbrAwnT1FQanMnyB3FJIAnvXUuiKrM'
+        url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=%s&key=%s' % (video_id, api_token)
         response = json.load(urllib.urlopen(url))
+        print response
         context = {
-            'title': response['entry']['title']['$t'],
-            'desc': response['entry']['media$group']['media$description']['$t']
+            'title': response['items'][0]['snippet']['localized']['title'],
+            'desc': response['items'][0]['snippet']['localized']['description']
         }
         return context
 
@@ -106,6 +111,7 @@ class Videos(AbstractClass):
         meta = self.get_meta(video_id)
         self.video_id = video_id
         self.title = meta['title']
+        self.description = meta['desc']
         super(Videos, self).save(
             force_insert=force_insert,
             force_update=force_update,
@@ -134,7 +140,6 @@ class Event(AbstractClass):
 
     def __unicode__(self):
         return self.title
-
 
 
 class Gallery(AbstractClass):

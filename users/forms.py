@@ -31,6 +31,7 @@ class UserCreateForm(forms.ModelForm):
             user.save()
         return user
 
+
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User

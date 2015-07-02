@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^error404/$', 'core.views.error404', name='core_404'),
-    url(r'^$', 'core.views.index', name='index'),
+    url(r'^index\.php', 'core.views.index', name='index'),
     url(r'^core/', include('core.urls', namespace='core')),
     url(r'^water/', include('water.urls', namespace='water')),
     url(r'^user/', include('users.urls', namespace='users')),

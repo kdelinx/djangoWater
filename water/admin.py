@@ -7,12 +7,12 @@ class VideoInline(admin.TabularInline):
     fk_name = 'news'
 
 
-class RVideoAdmin(admin.ModelAdmin):
-    inlines = [VideoInline]
+class RNewsAdmin(admin.ModelAdmin):
+    inlines = [VideoInline, ]
     save_on_top = True
 
 
 admin.site.register(Event)
-admin.site.register(News)
+admin.site.register(News, RNewsAdmin)
 admin.site.register(Gallery)
-admin.site.register(Videos, RVideoAdmin)
+admin.site.register(Videos)

@@ -45,6 +45,7 @@ def likes_gallery(request, id):
         reverse('water:gallery', args=(gallery.id,))
     )
 
+
 @login_required
 def likes_videos(request, id):
     user = get_object_or_404(User, id=request.user.id)
