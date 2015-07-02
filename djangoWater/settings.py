@@ -81,14 +81,14 @@ STATIC_URL = '/assets/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_URL = '/files/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
-LOGIN_REDIRECT_URL = '/index.php/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_AFTER_SIGNUP = True
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
-# SESSION_ENGINE = 'redis_sessions.session'
-# CACHE = {
-#     'default': {
-#         'BACKEND': 'redis_cache.RedisCach',
-#         'LOCATION': '/var/run/redis/redis.sock',
-#     }
-# }
+SESSION_ENGINE = 'redis_sessions.session'
+CACHE = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCach',
+        'LOCATION': '/var/run/redis/redis.sock',
+    }
+}

@@ -37,9 +37,11 @@ class Page(AbstractClass):
 
 class FAQ(AbstractClass):
     questions = models.CharField(
+        u'Вопрос',
         max_length=180,
     )
     answer = models.TextField(
+        u'Ответ',
         blank=True,
         default=''
     )
