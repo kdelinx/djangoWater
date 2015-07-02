@@ -1,6 +1,6 @@
 # coding: utf-8
 from itertools import chain
-from core.models import Page
+from core.models import Page, FAQ
 from users.models import User
 from water.models import News, Event
 from django.shortcuts import render, get_object_or_404
@@ -33,3 +33,15 @@ def page(request, page):
 
     # TODO Ну тут видишь надо сделать так чттб после
     # окончания регистрации никто не мог подать заявку до следующей
+
+
+def faq(request):
+    get_faq = get_object_or_404(FAQ)
+    data = {
+        'questions': request.POST.get('question', ''),
+    }
+    FAQ.objects.create(**data)
+    context = {
+        'list_faq': get_faq,
+    }
+    return render(request, 'core/faq.html', context)

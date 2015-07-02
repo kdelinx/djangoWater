@@ -35,4 +35,22 @@ class Page(AbstractClass):
         return self.title
 
 
+class FAQ(AbstractClass):
+    questions = models.CharField(
+        max_length=180,
+    )
+    answer = models.TextField(
+        blank=True,
+        default=''
+    )
+    published = models.BooleanField(
+        u'Опубликовать ?',
+        default=False
+    )
 
+    class Meta:
+        verbose_name = u'FAQ'
+        verbose_name_plural = u'faq'
+
+    def __unicode__(self):
+        return self.questions

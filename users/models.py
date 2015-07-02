@@ -24,7 +24,7 @@ def get_water_photo(instance, filename):
 
 class Gender(models.Model):
     gender = models.CharField(
-        max_length=7,
+        max_length=15,
         blank=True,
         null=True
     )
@@ -34,7 +34,7 @@ class Gender(models.Model):
         verbose_name_plural = u'пол'
 
     def __unicode__(self):
-        return self.gender
+        return '%s' % self.gender
 
 
 class User(AbstractClass, AbstractBaseUser, PermissionsMixin):
@@ -201,14 +201,10 @@ class Static(AbstractClass):
         related_name='enemy_static',
         verbose_name=u'Убитые участники игроком'
     )
-    number_lobby = models.SmallIntegerField(
-        'Номер лобби',
-        default=0
-    )
 
     class Meta:
         verbose_name = u'Статистика игр'
         verbose_name_plural = u'статистика игр'
 
     def __unicode__(self):
-        return '%s - %s' % (self.number_lobby, self.user.login)
+        return u'Убийца -> %s' % self.user.get_full_name()
